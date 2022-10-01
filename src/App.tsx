@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './App.css'
+import Home from './components/Home/Home'
+import Nav from './components/Nav/Nav'
+import Pantry from './components/Pantry/Pantry'
+import Cook from './components/Cook/Cook'
+import { IProduct } from './models/interfaces'
 
-function App() {
+import Mock from './mocks'
+
+function App (): JSX.Element {
+  const [userProducts, setUserProducts] = useState<IProduct[] | undefined>(Mock.userProducts)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <BrowserRouter>
+      <Nav />
+        <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='/my-pantry' element=
+          {
+            <Pantry
+            ingredientsTable={Mock.ingredientsTable}
+            userProducts={userProducts}
+            setUserProducts={setUserProducts}/>
+          } />
+          <Route path='/cook' element=
+          {
+            <Cook
+            ingredientsTable={Mock.ingredientsTable}
+            userProducts={userProducts}
+            setUserProducts={setUserProducts}
+            recipes={Mock.recipes}/>
+          } />
+        </Routes>
+      </BrowserRouter>
+    </>
+  )
 }
 
-export default App;
+export default App
