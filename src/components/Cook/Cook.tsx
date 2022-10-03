@@ -4,11 +4,13 @@ import { Recipe } from '../../models/Recipe'
 import { IProduct } from '../../models/interfaces'
 import { filterRecipes } from './filter'
 import RecipeArticle from '../RecipeArticle/RecipeArticle'
+import './cook.scss'
+
 interface ICookProps {
   recipes: Recipe[]
   ingredientsTable: Ingredient[]
-  userProducts: IProduct[] | undefined
-  setUserProducts: React.Dispatch<React.SetStateAction<IProduct[] | undefined>>
+  userProducts: IProduct[] | []
+  setUserProducts: React.Dispatch<React.SetStateAction<IProduct[] | []>>
 
 }
 
@@ -30,7 +32,7 @@ const Cook = ({ recipes, ingredientsTable, userProducts, setUserProducts }: ICoo
     <div>
       <h1>Cook!</h1>
       <h2>Your products</h2>
-      { (userProducts != null && userProducts.length > 0) &&
+      { userProducts.length > 0 &&
         <ul>
           {
             userProducts.map(ingredient => {
@@ -40,7 +42,7 @@ const Cook = ({ recipes, ingredientsTable, userProducts, setUserProducts }: ICoo
         </ul>
       }
       <h2>Possible recipes</h2>
-      <section>
+      <section className='possible-recipes'>
         { (possibleRecipes.length > 0) &&
           possibleRecipes.map(recipe => <RecipeArticle key={recipe.id} recipe={recipe} userProducts={userProducts} setUserProducts={setUserProducts} />)
         }

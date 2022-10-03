@@ -10,7 +10,7 @@ import { IProduct } from './models/interfaces'
 import Mock from './mocks'
 
 function App (): JSX.Element {
-  const [userProducts, setUserProducts] = useState<IProduct[] | undefined>(Mock.userProducts)
+  const [userProducts, setUserProducts] = useState<IProduct[] | []>(Mock.userProducts)
   return (
     <>
       <BrowserRouter>

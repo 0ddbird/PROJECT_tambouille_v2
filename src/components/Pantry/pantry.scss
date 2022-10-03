@@ -1,0 +1,35 @@
+#add-products-form {
+  background-color: grey;
+  width: max-content;
+}
+
+.product-inputs-container {
+  position: relative;
+  display: flex;
+}
+
+
+
+.product-name-options-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background-color: red;
+
+}
+
+#product-name-input {
+  position: relative;
+  grid-area: name;
+  
+}
+
+#product-quantity-input {
+  grid-area: quantity;
+  width: 10ch;
+}
+
+#product-submit-button {
+  grid-area: button;
+}
