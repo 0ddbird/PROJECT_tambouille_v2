@@ -15,8 +15,15 @@
   left: 0;
   right: 0;
   top: 100%;
-  background-color: red;
+  background-color: white;
+  border: 1px solid grey;
+}
 
+.product-name-option {
+  &:hover {
+    background-color: grey;
+    cursor: pointer;
+  }
 }
 
 #product-name-input {

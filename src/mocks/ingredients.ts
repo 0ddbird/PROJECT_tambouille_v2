@@ -28,6 +28,10 @@ const categories = [
   {
     id: 6,
     name: 'liquids'
+  },
+  {
+    id: 7,
+    name: 'seasonning'
   }
 ]
 
@@ -43,12 +47,13 @@ const mushroom = new Ingredient(7, 'mushroom', 1, 'g')
 const butter = new Ingredient(8, 'butter', 5, 'g')
 const pineapple = new Ingredient(9, 'pineapple', 0, 'unit')
 const egg = new Ingredient(10, 'egg', 5, 'unit')
-const chocolate = new Ingredient(11, 'chocolate', 4, 'unit')
+const chocolate = new Ingredient(11, 'chocolate', 4, 'g')
 const chicken = new Ingredient(12, 'chicken', 2, 'g')
 const tuna = new Ingredient(13, 'tuna', 3, 'g')
 const rice = new Ingredient(14, 'rice', 4, 'g')
 const bakeapple = new Ingredient(15, 'crabapple', 0, 'unit')
+const cinnamon = new Ingredient(16, 'cinnamon', 7, 'g')
 
-const ingredientsTable: Ingredient[] = [pastry, apple, sugar, salt, flour, water, pasta, mushroom, butter, pineapple, egg, chocolate, chicken, tuna, rice, bakeapple]
+const ingredients: Ingredient[] = [pastry, apple, sugar, salt, flour, water, pasta, mushroom, butter, pineapple, egg, chocolate, chicken, tuna, rice, bakeapple, cinnamon]
 
-export { ingredientsTable, categories }
+export { ingredients, categories }

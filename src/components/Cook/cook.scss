@@ -1,5 +1,26 @@
+.cook {
+  display: grid;
+  grid-template-areas:  "up up up up sel"
+                        "pr pr pr pr sel";
+  width: 100%;
+}
+
+.user-products {
+  grid-area: up;
+  background-color: rgb(161, 161, 161);
+}
+
+.possible-recipes-section {
+  grid-area: pr;
+}
+
 .possible-recipes {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2em;
+}
+
+.selected-recipes-section {
+  grid-area: sel;
+  background-color: rgb(194, 194, 194);
 }

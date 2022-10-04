@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../../App'
 import { Ingredient } from '../../models/Ingredient'
-import { IProduct } from '../../models/interfaces'
 import AddProductForm from '../AddProductForm/AddProductForm'
+import UserProduct from '../UserProduct/UserProduct'
 import './pantry.scss'
 
 /*
@@ -12,28 +13,26 @@ import './pantry.scss'
 */
 
 interface IPantryProps {
-  ingredientsTable: Ingredient[]
-  userProducts: IProduct[] | []
-  setUserProducts: React.Dispatch<React.SetStateAction<IProduct[] | []>>
+  ingredients: Ingredient[]
 }
 
-const Pantry = ({ ingredientsTable, userProducts, setUserProducts }: IPantryProps): JSX.Element => {
+const Pantry = ({ ingredients }: IPantryProps): JSX.Element => {
+  const { userProducts, setUserProducts } = useContext(AppContext)
+
   return (
   <section className='pantry'>
     <h1>Pantry</h1>
-        <AddProductForm userProducts={userProducts} setUserProducts={setUserProducts} ingredientsTable={ingredientsTable}/>
-    {
-      (userProducts != null && userProducts.length > 0) &&
-      <>
-        <h2>Your ingredients</h2>
-        <ul>
+    <AddProductForm userProducts={userProducts} setUserProducts={setUserProducts} ingredients={ingredients}/>
+    <h2>Your products</h2>
+    { (userProducts.length > 0)
+      ? <div>
           {
             userProducts.map((product) => {
-              return <li key={product.id}>{ingredientsTable[product.id].name}, {product.quantity.toString()}</li>
+              return <UserProduct key={product.id} product={product} userProducts={userProducts} setUserProducts={setUserProducts}/>
             })
           }
-        </ul>
-      </>
+        </div>
+      : <div>You have no product yet.</div>
     }
   </section>
   )
