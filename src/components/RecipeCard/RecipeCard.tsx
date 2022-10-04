@@ -3,6 +3,7 @@ import { Recipe } from '../../models/Recipe'
 import { Product } from '../../models/Product'
 import './recipe-article.scss'
 import { ingredients } from '../../mocks/ingredients'
+import { NavLink } from 'react-router-dom'
 
 interface IRecipeCardProps {
   recipe: Recipe
@@ -37,18 +38,19 @@ const RecipeCard = ({ recipe, userProducts, setUserProducts, selectedRecipes, se
   }
 
   return (
-    <article className='recipe'>
-      <h1>{recipe.name}</h1>
-      <h2>Ingredients</h2>
-      <ul>
-        {
-          recipe.products.map(product => {
-            return <li key={product.id}>{ingredients[product.id].name}, {product.quantity} {ingredients[product.id].unit}</li>
-          })
-        }
-      </ul>
-      <button type='button' onClick={handleAddRecipe}>Add recipe</button>
-      </article>
+      <article className='recipe'>
+        <h1>{recipe.name}</h1>
+        <h2>Ingredients</h2>
+        <ul>
+          {
+            recipe.products.map(product => {
+              return <li key={product.id}>{ingredients[product.id].name}, {product.quantity} {ingredients[product.id].unit}</li>
+            })
+          }
+        </ul>
+        <NavLink to={`/recipes/${recipe.id}`}>Directions</NavLink>
+        <button type='button' onClick={handleAddRecipe}>Add recipe</button>
+        </article>
   )
 }
 

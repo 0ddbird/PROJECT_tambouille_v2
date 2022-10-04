@@ -56,4 +56,4 @@ const cinnamon = new Ingredient(16, 'cinnamon', 7, 'g')
 
 const ingredients: Ingredient[] = [pastry, apple, sugar, salt, flour, water, pasta, mushroom, butter, pineapple, egg, chocolate, chicken, tuna, rice, bakeapple, cinnamon]
 
-export { ingredients, categories }
+export { ingredients, categories, pastry, apple, sugar, salt, flour, water, pasta, mushroom, butter, pineapple, egg, chocolate, chicken, tuna, rice, bakeapple, cinnamon }

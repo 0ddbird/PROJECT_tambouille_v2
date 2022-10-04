@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../App'
 import { Recipe } from '../../models/Recipe'
 import { filterRecipes } from './filter'
-import RecipeCard from '../RecipeCard/RecipeCard'
+import RecipeCard from '../../components/RecipeCard/RecipeCard'
 import './cook.scss'
-import SelectedRecipe from '../SelectedRecipe/SelectedRecipe'
+import SelectedRecipe from '../../components/SelectedRecipe/SelectedRecipe'
 
 interface ICookProps {
   recipes: Recipe[]

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../../App'
 import { Ingredient } from '../../models/Ingredient'
-import AddProductForm from '../AddProductForm/AddProductForm'
-import UserProduct from '../UserProduct/UserProduct'
+import AddProductForm from '../../components/AddProductForm/AddProductForm'
+import UserProduct from '../../components/UserProduct/UserProduct'
 import './pantry.scss'
 
 /*
