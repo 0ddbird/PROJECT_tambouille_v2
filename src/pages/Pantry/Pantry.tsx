@@ -21,9 +21,9 @@ const Pantry = ({ ingredients }: IPantryProps): JSX.Element => {
 
   return (
   <section className='pantry'>
-    <h1>Pantry</h1>
+    <h1>My pantry</h1>
     <AddProductForm userProducts={userProducts} setUserProducts={setUserProducts} ingredients={ingredients}/>
-    <h2>Your products</h2>
+    <h2>My products</h2>
     { (userProducts.length > 0)
       ? <div>
           {

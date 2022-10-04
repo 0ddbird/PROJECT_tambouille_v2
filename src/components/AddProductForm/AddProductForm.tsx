@@ -70,7 +70,7 @@ const AddProductForm = ({ userProducts, setUserProducts, ingredients }: IInputPr
       <label htmlFor='product-name-input'>Product</label>
       <label htmlFor='product-quantity-input'>Quantity</label>
       <div className='product-inputs-container'>
-        <input id='product-name-input' autoComplete='off'type="text" value={productName} onChange={handleInputChange}/>
+        <input id='product-name-input' autoComplete='off'type="text" placeholder={'pasta,...'}value={productName} onChange={handleInputChange}/>
         <div className='product-name-options-container'>
         {
           result.length > 0 &&

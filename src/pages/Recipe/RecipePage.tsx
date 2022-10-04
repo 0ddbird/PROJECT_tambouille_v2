@@ -13,7 +13,7 @@ const RecipePage = ({ recipes }: IRecipePageProps): JSX.Element => {
   const currentRecipe = recipes.find(recipe => recipe.id === recipeId)
   if (currentRecipe == null) return <div>No Recipe found</div>
   return (
-  <section>
+  <section className='recipe-page'>
     <h1>{currentRecipe.name}</h1>
     <h2>Ingredients</h2>
     <ul>

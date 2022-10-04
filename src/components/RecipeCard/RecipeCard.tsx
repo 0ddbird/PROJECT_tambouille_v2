@@ -49,7 +49,8 @@ const RecipeCard = ({ recipe, userProducts, setUserProducts, selectedRecipes, se
           }
         </ul>
         <NavLink to={`/recipes/${recipe.id}`}>Directions</NavLink>
-        <button type='button' onClick={handleAddRecipe}>Add recipe</button>
+        <button type='button'>Cook!</button>
+        <button type='button' onClick={handleAddRecipe}>Throw in the pot!</button>
         </article>
   )
 }

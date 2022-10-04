@@ -53,7 +53,8 @@ const tuna = new Ingredient(13, 'tuna', 3, 'g')
 const rice = new Ingredient(14, 'rice', 4, 'g')
 const bakeapple = new Ingredient(15, 'crabapple', 0, 'unit')
 const cinnamon = new Ingredient(16, 'cinnamon', 7, 'g')
+const mayonnaise = new Ingredient(17, 'mayonnaise', 7, 'g')
 
-const ingredients: Ingredient[] = [pastry, apple, sugar, salt, flour, water, pasta, mushroom, butter, pineapple, egg, chocolate, chicken, tuna, rice, bakeapple, cinnamon]
+const ingredients: Ingredient[] = [pastry, apple, sugar, salt, flour, water, pasta, mushroom, butter, pineapple, egg, chocolate, chicken, tuna, rice, bakeapple, cinnamon, mayonnaise]
 
-export { ingredients, categories, pastry, apple, sugar, salt, flour, water, pasta, mushroom, butter, pineapple, egg, chocolate, chicken, tuna, rice, bakeapple, cinnamon }
+export { ingredients, categories, pastry, apple, sugar, salt, flour, water, pasta, mushroom, butter, pineapple, egg, chocolate, chicken, tuna, rice, bakeapple, cinnamon, mayonnaise }
