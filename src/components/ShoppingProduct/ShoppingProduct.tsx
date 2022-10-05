@@ -17,9 +17,9 @@ interface IShoppingProductProps {
 const ShoppingProduct = ({ product, shoppingList, setShoppingList, userProducts, setUserProducts, purchasedProducts, setPurchasedProducts }: IShoppingProductProps): JSX.Element => {
   const [hasBeenPurchased, setHasBeenPurchased] = useState(purchasedProducts.includes(product.id))
   function removeFromShoppingList (product: Product): void {
-    const newShoppingList = rfdc()(shoppingList)
-    if (product.id in shoppingList) delete newShoppingList[product.id] // eslint-disable-line
-    setShoppingList(newShoppingList)
+    const updatedShoppingList = rfdc()(shoppingList)
+    if (product.id in shoppingList) delete updatedShoppingList[product.id] // eslint-disable-line
+    setShoppingList(updatedShoppingList)
   }
 
   function handleShoppingProductState (e: React.ChangeEvent<HTMLInputElement>, product: Product): void {

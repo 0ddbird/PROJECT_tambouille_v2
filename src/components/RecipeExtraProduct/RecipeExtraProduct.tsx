@@ -4,7 +4,7 @@ import { Product } from '../../models/Product'
 import { IProductsObject } from '../../models/interfaces'
 import rfdc from 'rfdc'
 
-interface ISuggestedRecipeProps {
+interface IRecipeExtraProductProps {
   recipe: Recipe
   userProducts: Product[]
   shoppingList: IProductsObject
@@ -12,7 +12,7 @@ interface ISuggestedRecipeProps {
   category: string
 }
 
-const SuggestedRecipe = ({ recipe, userProducts, shoppingList, setShoppingList, category }: ISuggestedRecipeProps): JSX.Element => {
+const RecipeExtraProduct = ({ recipe, userProducts, shoppingList, setShoppingList, category }: IRecipeExtraProductProps): JSX.Element => {
   function addToShoppingList (recipe: Recipe): void {
     const currentShoppingList = rfdc()(shoppingList)
     const userProductsIds = userProducts.map(product => product.id)
@@ -40,4 +40,4 @@ const SuggestedRecipe = ({ recipe, userProducts, shoppingList, setShoppingList, 
   )
 }
 
-export default SuggestedRecipe
+export default RecipeExtraProduct

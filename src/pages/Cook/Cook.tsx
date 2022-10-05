@@ -7,8 +7,8 @@ import { filterRecipes } from './search'
 import RecipeCard from '../../components/RecipeCard/RecipeCard'
 import './cook.scss'
 import SelectedRecipe from '../../components/SelectedRecipe/SelectedRecipe'
-import SuggestedRecipe from '../../components/SuggestedRecipe/SuggestedRecipe'
-
+import RecipeExtraProduct from '../../components/RecipeExtraProduct/RecipeExtraProduct'
+import RecipeExtraQuantity from '../../components/RecipeExtraQuantity/RecipeExtraQuantity'
 interface ICookProps {
   recipes: Recipe[]
 }
@@ -64,7 +64,7 @@ const Cook = ({ recipes }: ICookProps): JSX.Element => {
   )
 
   const extraProductsRecipesCards = extraProductRecipes.map(recipe =>
-    <SuggestedRecipe
+    <RecipeExtraProduct
     key={recipe.id}
     recipe={recipe}
     userProducts={userProducts}
@@ -74,7 +74,7 @@ const Cook = ({ recipes }: ICookProps): JSX.Element => {
   )
 
   const extraQuantityRecipesCards = extraQuantityRecipes.map(recipe =>
-    <SuggestedRecipe
+    <RecipeExtraQuantity
     key={recipe.id}
     recipe={recipe}
     userProducts={userProducts}
