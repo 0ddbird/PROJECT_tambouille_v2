@@ -30,6 +30,7 @@ const RecipeExtraQuantity = ({ recipe, userProducts, shoppingList, setShoppingLi
     })
 
     productWithNewQuantity.forEach(product => {
+      if (product.quantity <= 0) return
       if ((product.id in updatedShoppingList)) updatedShoppingList[product.id].quantity += product.quantity
       else if (!(product.id in updatedShoppingList)) updatedShoppingList[product.id] = { ...product }
     })
