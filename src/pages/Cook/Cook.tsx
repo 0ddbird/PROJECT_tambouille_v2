@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { AppContext } from '../../App'
+import { AppContext } from '../../components/ContextProvider/ContextProvider'
 import { Recipe } from '../../models/Recipe'
+import { Product } from '../../models/Product'
+import { IProductsObject } from '../../models/interfaces'
 import { filterRecipes } from './search'
 import RecipeCard from '../../components/RecipeCard/RecipeCard'
 import './cook.scss'
@@ -11,98 +13,110 @@ interface ICookProps {
   recipes: Recipe[]
 }
 
-/*
-* This component displays possible recipes based on the user's available ingredients
-* When the user selects a recipe and click on the 'cook' button, the ingredients are consumed and removed from the pantry
-*/
-
 const Cook = ({ recipes }: ICookProps): JSX.Element => {
-  const { userProducts, setUserProducts, selectedRecipes, setSelectedRecipes, shoppingList, setShoppingList } = useContext(AppContext)
-  const [possibleRecipes, setPossibleRecipes] = useState<Recipe[] | []>([])
-  const [extraProductRecipes, setExtraProductRecipes] = useState<Recipe[] | []>([])
-  const [extraQuantityRecipes, setExtraQuantityRecipes] = useState<Recipe[] | []>([])
+  const {
+    userProducts,
+    selectedRecipes,
+    setSelectedRecipes,
+    setSelectedProducts,
+    shoppingList,
+    setShoppingList,
+    localUserProducts,
+    setLocalUserProducts } = useContext(AppContext)! // eslint-disable-line
+  const [possibleRecipes, setPossibleRecipes] = useState<Recipe[]>([])
+  const [extraProductRecipes, setExtraProductRecipes] = useState<Recipe[]>([])
+  const [extraQuantityRecipes, setExtraQuantityRecipes] = useState<Recipe[]>([])
 
   useEffect(() => {
-    if (userProducts == null) return
-    const searchResult = filterRecipes(userProducts, recipes, 2)
+    if (localUserProducts == null) return
+    const searchResult = filterRecipes(localUserProducts, recipes, 2)
     setPossibleRecipes(searchResult.matchingRecipes)
     setExtraProductRecipes(searchResult.missingIngredientsRecipes)
     setExtraQuantityRecipes(searchResult.missingQuantityRecipes)
-  }, [userProducts])
+  }, [localUserProducts])
+
+  useEffect(() => {
+    const currentlySelectedRecipes = [...selectedRecipes]
+    const selectedProductObject = currentlySelectedRecipes.flatMap((r: Recipe) => r.products).reduce((acc: IProductsObject, p: Product) => ({ ...acc, [p.id]: { ...p, quantity: p.quantity + (acc[p.id]?.quantity ?? 0) } }), {}) // eslint-disable-line
+
+    setSelectedProducts(selectedProductObject)
+  }, [selectedRecipes])
+
+  const possibleRecipesCards = possibleRecipes.map(recipe =>
+    <RecipeCard
+    key={recipe.id}
+    recipe={recipe}
+    localUserProducts={localUserProducts}
+    setLocalUserProducts={setLocalUserProducts}
+    selectedRecipes={selectedRecipes}
+    setSelectedRecipes={setSelectedRecipes}
+    />)
+
+  const selectedRecipesCards = selectedRecipes.map(recipe =>
+    <SelectedRecipe
+    key={recipe.id}
+    selectedRecipe={recipe}
+    userProducts={localUserProducts}
+    setUserProducts={setLocalUserProducts}
+    selectedRecipes={selectedRecipes}
+    setSelectedRecipes={setSelectedRecipes}
+    />
+  )
+
+  const extraProductsRecipesCards = extraProductRecipes.map(recipe =>
+    <SuggestedRecipe
+    key={recipe.id}
+    recipe={recipe}
+    userProducts={userProducts}
+    shoppingList={shoppingList}
+    setShoppingList={setShoppingList}
+    category='extra-products'/>
+  )
+
+  const extraQuantityRecipesCards = extraQuantityRecipes.map(recipe =>
+    <SuggestedRecipe
+    key={recipe.id}
+    recipe={recipe}
+    userProducts={userProducts}
+    shoppingList={shoppingList}
+    setShoppingList={setShoppingList}
+    category='extra-quantity'/>
+  )
 
   return (
     <>
-    <h1>My pot</h1>
+      <h1>My pot</h1>
       <section className='cook'>
         <section className='user-products'>
-          <h1>My products</h1>
-          { userProducts.length > 0 &&
+          <h1>Available products</h1>
+          { localUserProducts.length > 0 &&
             <ul>
-              {
-                userProducts.map(ingredient => {
-                  return <li key={ingredient.id}>{ingredient.name}, {ingredient.quantity}</li>
-                })
-              }
+              { localUserProducts.map(ingredient => { return <li key={ingredient.id}>{ingredient.name}, {ingredient.quantity} {ingredient.unit}</li> }) }
             </ul>
           }
         </section>
         <section className='possible-recipes-section'>
           <h1>Possible recipes</h1>
           <div className='possible-recipes'>
-          { (possibleRecipes.length > 0) &&
-            possibleRecipes.map(recipe =>
-            <RecipeCard
-            key={recipe.id}
-            recipe={recipe}
-            userProducts={userProducts}
-            setUserProducts={setUserProducts}
-            selectedRecipes={selectedRecipes}
-            setSelectedRecipes={setSelectedRecipes}
-            />)
-          }
+            { (possibleRecipesCards.length > 0) ? possibleRecipesCards : <div>No recipe found</div>}
           </div>
         </section>
         <section className='selected-recipes-section'>
-          <h1>Recipes in the pot!</h1>
+          <h1>Compose your menu</h1>
           <div className='selected-recipes'>
-          {
-            selectedRecipes.length > 0
-              ? selectedRecipes.map(recipe => {
-                return <SelectedRecipe
-                        key={recipe.id}
-                        selectedRecipe={recipe}
-                        userProducts={userProducts}
-                        setUserProducts={setUserProducts}
-                        selectedRecipes={selectedRecipes}
-                        setSelectedRecipes={setSelectedRecipes}
-                        />
-              })
-              : <div>You haven&apos;t selected any recipe</div>
-          }
+          { selectedRecipesCards.length > 0 ? selectedRecipesCards : <div>Recipes you select will appear here</div> }
           </div>
         </section>
         <section className='extra-product-recipes-section'>
-          <h1>Extra product recipes</h1>
+          <h1>With 2 more ingredient...</h1>
           <div className='suggested-recipes'>
-          {
-            extraProductRecipes.length > 0
-              ? extraProductRecipes.map(recipe => {
-                return <SuggestedRecipe key={recipe.id} recipe={recipe} userProducts={userProducts} shoppingList={shoppingList} setShoppingList={setShoppingList}/>
-              })
-              : <></>
-          }
+          { extraProductsRecipesCards.length > 0 ? extraProductsRecipesCards : <>No recipe found</> }
           </div>
         </section>
         <section className='extra-quantity-recipes-section'>
-          <h1>Extra quantity recipes</h1>
+          <h1>With a bit more of your ingredients...</h1>
           <div className='suggested-recipes'>
-          {
-            extraQuantityRecipes.length > 0
-              ? extraQuantityRecipes.map(recipe => {
-                return <SuggestedRecipe key={recipe.id} recipe={recipe} userProducts={userProducts} shoppingList={shoppingList} setShoppingList={setShoppingList}/>
-              })
-              : <></>
-          }
+          { extraQuantityRecipesCards.length > 0 ? extraQuantityRecipesCards : <>No recipe found</> }
           </div>
         </section>
       </section>

@@ -3,13 +3,13 @@ import { Ingredient } from '../../models/Ingredient'
 import { Product } from '../../models/Product'
 
 interface IInputProps {
-  userProducts: Product[] | []
-  setUserProducts: (Product: Product[] | []) => void
+  userProducts: Product[]
+  setUserProducts: (Product: Product[]) => void
   ingredients: Ingredient[]
 }
 
 const AddProductForm = ({ userProducts, setUserProducts, ingredients }: IInputProps): JSX.Element => {
-  const [result, setResult] = useState<Ingredient[] | []>([])
+  const [result, setResult] = useState<Ingredient[]>([])
   const [productName, setProductName] = useState<string>('')
   const [productQuantity, setProductQuantity] = useState<number>(1)
 

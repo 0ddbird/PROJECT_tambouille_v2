@@ -11,7 +11,7 @@ const applePie = new Recipe(0, 'Apple pie', [
 const mushroomsPasta = new Recipe(1, 'Pasta with mushrooms', [
   { ...pasta, quantity: 150 },
   { ...mushroom, quantity: 50 },
-  { ...water, quantity: 2000 }
+  { ...water, quantity: 2 }
 ], 0)
 
 const chocolateCake = new Recipe(2, 'Chocolate cake', [
@@ -25,7 +25,7 @@ const appleRecipe = new Recipe(3, 'Apple', [{ ...apple, quantity: 1 }], 0)
 const scrambledEgg = new Recipe(4, 'Scrambled egg', [{ ...egg, quantity: 1 }], 0)
 const boiledEgg = new Recipe(5, 'Boiled egg', [{ ...egg, quantity: 1 }], 0)
 const friedEgg = new Recipe(6, 'Fried egg', [{ ...egg, quantity: 1 }], 0)
-const eggMayonnaise = new Recipe(6, 'Egg mayonnaise', [{ ...egg, quantity: 1 }, { ...mayonnaise, quantity: 20 }], 0)
+const eggMayonnaise = new Recipe(7, 'Egg mayonnaise', [{ ...egg, quantity: 1 }, { ...mayonnaise, quantity: 20 }], 0)
 
 const recipes: Recipe[] = [applePie, appleRecipe, mushroomsPasta, chocolateCake, scrambledEgg, boiledEgg, friedEgg, eggMayonnaise]
 

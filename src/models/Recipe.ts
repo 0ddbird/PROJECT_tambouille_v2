@@ -1,26 +1,14 @@
 import { Product } from './Product'
 
 export class Recipe {
-  id: number
-  name: string
-  products: Product[]
-  selected: number
-
-  constructor (id: number, name: string, products: Product[], selected: number) {
-    this.id = id
-    this.name = name
-    this.products = products
-    this.selected = selected
-  }
-
-  getProducts (): Product[] {
-    return this.products
-  }
+  constructor (
+    public id: number,
+    public name: string,
+    public products: Product[],
+    public selected: number
+  ) {}
 
   getProductsIds (): number[] {
-    const newResult = this.products.map(product => {
-      return product.id
-    })
-    return newResult
+    return this.products.map(product => product.id)
   }
 }

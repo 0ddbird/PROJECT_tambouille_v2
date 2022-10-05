@@ -5,9 +5,9 @@ import { Recipe } from '../../models/Recipe'
 interface ISelectedRecipeProps {
   selectedRecipe: Recipe
   userProducts: Product[]
-  setUserProducts: (Product: Product[] | []) => void
+  setUserProducts: (Product: Product[]) => void
   selectedRecipes: Recipe[]
-  setSelectedRecipes: (Recipe: Recipe[] | []) => void
+  setSelectedRecipes: (Recipe: Recipe[]) => void
 }
 
 const SelectedRecipe = ({ selectedRecipe, userProducts, setUserProducts, selectedRecipes, setSelectedRecipes }: ISelectedRecipeProps): JSX.Element => {

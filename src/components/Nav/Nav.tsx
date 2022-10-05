@@ -7,6 +7,7 @@ const Nav = (): JSX.Element => {
       <NavLink to='/'>Home</NavLink>
       <NavLink to='/my-pantry'>Pantry</NavLink>
       <NavLink to='/cook'>Cook</NavLink>
+      <NavLink to='/shopping-list'>Shopping List</NavLink>
     </nav>
   )
 }

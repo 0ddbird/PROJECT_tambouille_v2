@@ -1,39 +1,32 @@
 import React, { useContext } from 'react'
-import { AppContext } from '../../App'
+import { AppContext } from '../../components/ContextProvider/ContextProvider'
 import { Ingredient } from '../../models/Ingredient'
 import AddProductForm from '../../components/AddProductForm/AddProductForm'
 import UserProduct from '../../components/UserProduct/UserProduct'
 import './pantry.scss'
-
-/*
-* In this component, the user can read, create, modify and delete the ingredients in his/her possession.
-* An ingredient must have a quantity linked to it.
-* The list of ingredients must be available in the Cook component to suggest recipes.
-* An ingredient will look like this : {name: 'apple', quantity: 3}
-*/
 
 interface IPantryProps {
   ingredients: Ingredient[]
 }
 
 const Pantry = ({ ingredients }: IPantryProps): JSX.Element => {
-  const { userProducts, setUserProducts } = useContext(AppContext)
+  const { userProducts, setUserProducts, selectedProducts } = useContext(AppContext)! // eslint-disable-line
+
+  const userProductCards = userProducts.map((product) =>
+    <UserProduct
+    key={product.id}
+    product={product}
+    userProducts={userProducts}
+    setUserProducts={setUserProducts}
+    selectedProducts={selectedProducts}/>
+  )
 
   return (
   <section className='pantry'>
     <h1>My pantry</h1>
     <AddProductForm userProducts={userProducts} setUserProducts={setUserProducts} ingredients={ingredients}/>
     <h2>My products</h2>
-    { (userProducts.length > 0)
-      ? <div>
-          {
-            userProducts.map((product) => {
-              return <UserProduct key={product.id} product={product} userProducts={userProducts} setUserProducts={setUserProducts}/>
-            })
-          }
-        </div>
-      : <div>You have no product yet.</div>
-    }
+    { (userProducts.length > 0) ? <div>{userProductCards}</div> : <div>You have no product yet.</div> }
   </section>
   )
 }

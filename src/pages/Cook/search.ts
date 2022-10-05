@@ -10,7 +10,6 @@ interface IResult {
 export function filterRecipes (userProducts: IProduct[], recipes: Recipe[], threshold: number): IResult {
   const userProductsIds = userProducts.map(ingredient => { return ingredient.id })
 
-  // Returns an array of recipes which products are in userProducts and match the required quantity for the recipe
   const filteredResult: IResult = {
     matchingRecipes: [],
     missingIngredientsRecipes: [],
@@ -18,15 +17,15 @@ export function filterRecipes (userProducts: IProduct[], recipes: Recipe[], thre
   }
 
   recipes.forEach(recipe => {
-    // Check that user has almost all required products to cook the recipe, with a tolerance of ${threshold}
-    const extraProducts = recipe.getProducts().filter(product => !userProductsIds.includes(product.id))
+    // Filter the recipes products which are missing in the user products
+    const extraProducts = recipe.products.filter(product => !userProductsIds.includes(product.id))
 
-    // If there is more extra products than ${threshold}, we do not push it to the result
+    // If there is more extra products than ${threshold}, we do not want to suggest this recipe.
     if (extraProducts.length > threshold) return
 
     const hasExtraProducts = extraProducts.length > 0
-    // If there is no more extra products than ${threshold} we want to check if the user has a greater product quantity than the recipe requires
-    const commonProducts = recipe.getProducts().filter(product => userProductsIds.includes(product.id))
+    // If there is no more extra products than ${threshold} we want to check if the user has enough quantity of each products for the recipe
+    const commonProducts = recipe.products.filter(product => userProductsIds.includes(product.id))
     const commonProductsMatchQuantity = commonProducts.every(recipeProduct => {
       const userProduct = userProducts.find(userProduct => userProduct.id === recipeProduct.id)
       if (userProduct === undefined) return false
@@ -36,6 +35,9 @@ export function filterRecipes (userProducts: IProduct[], recipes: Recipe[], thre
     if (hasExtraProducts && commonProductsMatchQuantity) filteredResult.missingIngredientsRecipes.push(recipe)
     else if (!hasExtraProducts && commonProductsMatchQuantity) filteredResult.matchingRecipes.push(recipe)
     else if (!hasExtraProducts && !commonProductsMatchQuantity) filteredResult.missingQuantityRecipes.push(recipe)
+    // last case that stays uncovered is (hasExtraProducts && !communProductsMatchQuantity)
+    // Meaning : there are extra products and user has not enough quantity of matching products to cook the recipe
+    // The recipe requirepents is too far from what we want to suggest to the user, so we don't push it.
   })
 
   return filteredResult

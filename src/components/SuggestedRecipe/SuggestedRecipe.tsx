@@ -1,22 +1,28 @@
 import * as React from 'react'
 import { Recipe } from '../../models/Recipe'
 import { Product } from '../../models/Product'
+import { IProductsObject } from '../../models/interfaces'
+import rfdc from 'rfdc'
 
 interface ISuggestedRecipeProps {
   recipe: Recipe
-  userProducts: Product[] | []
-  shoppingList: Product[] | []
-  setShoppingList: (Product: Product[] | []) => void
+  userProducts: Product[]
+  shoppingList: IProductsObject
+  setShoppingList: React.Dispatch<React.SetStateAction<IProductsObject>>
+  category: string
 }
 
-const SuggestedRecipe = ({ recipe, userProducts, shoppingList, setShoppingList }: ISuggestedRecipeProps): JSX.Element => {
-  console.log(userProducts, shoppingList, setShoppingList)
-
+const SuggestedRecipe = ({ recipe, userProducts, shoppingList, setShoppingList, category }: ISuggestedRecipeProps): JSX.Element => {
   function addToShoppingList (recipe: Recipe): void {
-    // Check if there are products matching this recipe products in the shopping list
-    // if so, add missing quantity to existing products
-    // else add all products in full quantity to
-    console.log(recipe)
+    const currentShoppingList = rfdc()(shoppingList)
+    const userProductsIds = userProducts.map(product => product.id)
+    const extraProducts = recipe.products.filter(product => !userProductsIds.includes(product.id))
+    const extraProductsIds = extraProducts.map(product => product.id)
+    recipe.products.forEach(product => {
+      if ((product.id in currentShoppingList) && extraProductsIds.includes(product.id)) currentShoppingList[product.id].quantity += product.quantity
+      else if (!(product.id in currentShoppingList) && extraProductsIds.includes(product.id)) currentShoppingList[product.id] = { ...product }
+    })
+    setShoppingList(currentShoppingList)
   }
   return (
     <article>
@@ -25,11 +31,11 @@ const SuggestedRecipe = ({ recipe, userProducts, shoppingList, setShoppingList }
       <ul>
         {
           recipe.products.map(product => {
-            return <li key={product.id}>{product.name}, {product.quantity}{product.unit}</li>
+            return <li key={`${category} ${product.id}`}>{`${product.name} x${product.quantity}${product.unit}`}</li>
           })
         }
       </ul>
-      <button type='button' onClick={() => addToShoppingList(recipe)}>Add to shopping list</button>
+      <button type='button' onClick={() => addToShoppingList(recipe)}>Add missing ingredients to shopping list</button>
     </article>
   )
 }
