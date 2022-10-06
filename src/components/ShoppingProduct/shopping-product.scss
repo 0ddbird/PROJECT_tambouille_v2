@@ -1,3 +1,25 @@
+@use '../../sass/abstract/' as a;
+.shopping-list-item {
+  background-color: a.$clr-trswhite;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 3em 10fr 1fr;
+}
+
+.shopping-list-checkbox {
+  
+}
+
+.shopping-product {
+
+}
+
 .shopping-product-purchased {
   text-decoration:line-through;
+}
+
+.shopping-product-remove-button {
+  background-color: a.$clr-red;
+  color: white;
+  border-radius: .25ch;
 }

@@ -1,26 +1,53 @@
-.cook {
-  display: grid;
-  grid-template-areas:  "up up up up sel"
-                        "pr pr pr pr sel";
-  width: 100%;
+@use '../../sass/abstract/' as a;
+#cook {
+  background-color: a.$clr-dgrey;
 }
 
-.user-products {
-  grid-area: up;
-  background-color: rgb(161, 161, 161);
+.cook_heading {
+  font-size: 2em;
 }
 
-.possible-recipes-section {
-  grid-area: pr;
+.cook-section {
+  padding: 1em;
+  margin-bottom: 3em;
 }
 
-.possible-recipes {
+#cook_products-section {
+  & h1 {
+    color: black;
+  }
+}
+
+.cook_user-products-list {
+  background-color: a.$clr-trswhite;
+  border-radius: .25ch;
+  padding: 1ch;
+
+  & li {
+    &::before {
+      content: '- '
+    }
+  }
+}
+
+#cook_menu-section {
+  margin: 3em 0;
+  & h1 {
+    text-align: center;
+  }
+}
+
+.cook_recipes-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2em;
+  gap: 1ch;
+  padding: 1em;
 }
 
-.selected-recipes-section {
-  grid-area: sel;
-  background-color: rgb(194, 194, 194);
+#cook_recipes-section {
+
+}
+
+.threshold-input {
+  width: 2ch;
 }

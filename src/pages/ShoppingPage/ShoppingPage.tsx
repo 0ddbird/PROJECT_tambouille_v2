@@ -3,6 +3,7 @@ import { AppContext } from '../../components/ContextProvider/ContextProvider'
 import ShoppingProduct from '../../components/ShoppingProduct/ShoppingProduct'
 import { Product } from '../../models/Product'
 import rfdc from 'rfdc'
+import './shopping-page.scss'
 
 const ShoppingList = (): JSX.Element => {
   const { userProducts, setUserProducts, shoppingList, setShoppingList, purchasedProducts, setPurchasedProducts} = useContext(AppContext)! // eslint-disable-line
@@ -32,10 +33,12 @@ const ShoppingList = (): JSX.Element => {
   )
 
   return (
-    <section className='shopping-list'>
-      { productsArray.length > 0 ? productsCards : <div>You have no items in your shopping list!</div>
-      }
-      <button type='button' onClick={handleClearPurchased}>Clear purchased</button>
+    <section className='shopping-page'>
+      <h1 className='shopping-page-heading'>Shopping List</h1>
+      <div className='shopping-page-list-container'>
+        { productsArray.length > 0 ? productsCards : <div>You have no items in your shopping list!</div> }
+      </div>
+      <button className='shopping-clear-button' type='button' onClick={handleClearPurchased}>Clear purchased</button>
     </section>
   )
 }

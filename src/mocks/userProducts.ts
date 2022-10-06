@@ -3,7 +3,7 @@ import { ingredients } from './ingredients'
 
 const productOne = {
   ...{ ...ingredients[0] },
-  quantity: 2
+  quantity: 200
 }
 
 const productTwo = {
@@ -13,7 +13,7 @@ const productTwo = {
 
 const productThree = {
   ...{ ...ingredients[2] },
-  quantity: 4
+  quantity: 900
 }
 
 const userProducts: Product[] = [productOne, productTwo, productThree]

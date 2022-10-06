@@ -8,7 +8,8 @@ import Cook from './pages/Cook/Cook'
 import Mock from './mocks'
 import RecipePage from './pages/Recipe/RecipePage'
 import ContextProvider from './components/ContextProvider/ContextProvider'
-import ShoppingList from './pages/ShoppingList/ShoppingList'
+import ShoppingList from './pages/ShoppingPage/ShoppingPage'
+import './sass/main.scss'
 
 function App (): JSX.Element {
   return (

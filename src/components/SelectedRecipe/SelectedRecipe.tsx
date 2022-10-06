@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Product } from '../../models/Product'
 import { Recipe } from '../../models/Recipe'
+import './selected-recipe.scss'
 
 interface ISelectedRecipeProps {
   selectedRecipe: Recipe
@@ -34,9 +35,11 @@ const SelectedRecipe = ({ selectedRecipe, userProducts, setUserProducts, selecte
   return (
      <>
         <article key={selectedRecipe.id} className='selected-recipe'>
-          <h1>{selectedRecipe.name}</h1>
-          <span>x{selectedRecipe.selected}</span>
-          <button type='button' onClick={() => handleDeleteSelectedRecipe(selectedRecipe)}>-</button>
+          <h1 className='selected-recipe-heading'>{selectedRecipe.name}</h1>
+          <span className='selected-recipe-quantity'>x{selectedRecipe.selected}</span>
+          <div className='selected-recipe-button-container'>
+            <button className='selected-recipe-remove-button'type='button' onClick={() => handleDeleteSelectedRecipe(selectedRecipe)}>-</button>
+          </div>
         </article>
       </>
 

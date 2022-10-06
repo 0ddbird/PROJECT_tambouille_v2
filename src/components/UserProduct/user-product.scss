@@ -1,0 +1,58 @@
+@use '../../sass/abstract/' as a;
+.user-product {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 4fr;
+  background-color: a.$clr-trswhite;
+  border-radius: .25ch;
+  padding: .5ch 1ch;
+}
+
+.user-product-name-container {
+  display: flex;
+  align-items: center;
+}
+
+.user-product-name {
+  font-weight: 700;
+}
+
+.user-product-quantity-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  
+}
+.user-product-quantity-input {
+  width: 5ch;
+  border: none;
+  text-align: right;
+  border-radius: .25ch;
+  padding: 1ch .5ch 1ch 0;
+}
+
+.user-product-unit-container {
+  display: flex;
+  align-items: center;
+}
+.user-product-unit {
+  text-align: left;
+  font-weight: 700;
+  
+}
+.user-product-remove-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.user-product-remove-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  background-color: a.$clr-red;
+  color: white;
+  font-weight: 700;
+  border-radius: .25ch;
+  width: 2em;
+  height: 2em;
+}

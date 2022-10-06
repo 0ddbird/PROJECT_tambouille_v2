@@ -1,0 +1,23 @@
+@use '../../sass/abstract/' as a;
+
+.shopping-page {
+  background-color: a.$clr-dgrey;
+  height: 100vh;
+}
+
+.shopping-page-heading {
+  font-size: 2em;
+  text-align: center;
+}
+
+.shopping-page-list-container {
+  padding: 2em;
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.shopping-clear-button {
+
+}

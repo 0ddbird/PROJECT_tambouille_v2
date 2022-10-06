@@ -1,0 +1,33 @@
+@use '../abstract/' as a;
+* {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  @include a.mq-320 { font-size: 14px; }
+  @include a.mq-481 { font-size: 16px; }
+  @include a.mq-641 { font-size: 18px; }
+  @include a.mq-961 { font-size: 20px; }
+  @include a.mq-1025 { font-size: 22px; }
+  @include a.mq-1800 { font-size: 24px; }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+.section-heading {
+  text-align: center;
+}
+
+.section-subheading {
+  font-size: 2em;
+  text-align: center;
+}

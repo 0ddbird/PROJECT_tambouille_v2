@@ -1,0 +1,30 @@
+@use '../../sass/abstract/' as a;
+
+.extra-recipe {
+  display: grid;
+  grid-template-areas:  'heading      heading     heading     button'
+                        'ingredients  ingredients ingredients button ';
+  background-color: a.$clr-trswhite;
+  padding: .5em;
+}
+
+.extra-recipe-heading {
+  font-size: 1em;
+  grid-area: heading;
+}
+
+.extra-recipe-ingredients-container {
+  grid-area: ingredients;
+}
+
+.extra-recipe-button {
+  grid-area: button;
+  background-color: a.$clr-secondary;
+  border-radius: .25ch;
+  @include a.flex-center;
+}
+
+.cartIcon {
+  height: 2em;
+  width: 2em;
+}

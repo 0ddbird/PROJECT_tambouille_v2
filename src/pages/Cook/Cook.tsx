@@ -5,10 +5,11 @@ import { Product } from '../../models/Product'
 import { IProductsObject } from '../../models/interfaces'
 import { filterRecipes } from './search'
 import RecipeCard from '../../components/RecipeCard/RecipeCard'
-import './cook.scss'
 import SelectedRecipe from '../../components/SelectedRecipe/SelectedRecipe'
 import RecipeExtraProduct from '../../components/RecipeExtraProduct/RecipeExtraProduct'
 import RecipeExtraQuantity from '../../components/RecipeExtraQuantity/RecipeExtraQuantity'
+import './cook.scss'
+
 interface ICookProps {
   recipes: Recipe[]
 }
@@ -26,14 +27,14 @@ const Cook = ({ recipes }: ICookProps): JSX.Element => {
   const [possibleRecipes, setPossibleRecipes] = useState<Recipe[]>([])
   const [extraProductRecipes, setExtraProductRecipes] = useState<Recipe[]>([])
   const [extraQuantityRecipes, setExtraQuantityRecipes] = useState<Recipe[]>([])
-
+  const [threshold, setThreshold] = useState(1)
   useEffect(() => {
     if (localUserProducts == null) return
-    const searchResult = filterRecipes(localUserProducts, recipes, 2)
+    const searchResult = filterRecipes(localUserProducts, recipes, threshold)
     setPossibleRecipes(searchResult.matchingRecipes)
     setExtraProductRecipes(searchResult.missingIngredientsRecipes)
     setExtraQuantityRecipes(searchResult.missingQuantityRecipes)
-  }, [localUserProducts])
+  }, [localUserProducts, threshold, selectedRecipes])
 
   useEffect(() => {
     const currentlySelectedRecipes = [...selectedRecipes]
@@ -85,40 +86,42 @@ const Cook = ({ recipes }: ICookProps): JSX.Element => {
 
   return (
     <>
-      <h1>My pot</h1>
-      <section className='cook'>
-        <section className='user-products'>
-          <h1>Available products</h1>
+      <section className='page' id='cook'>
+        <section id='cook_products-section' className='cook_section'>
+          <h1 className='cook_heading'>My ingredients</h1>
           { localUserProducts.length > 0 &&
-            <ul>
-              { localUserProducts.map(ingredient => { return <li key={ingredient.id}>{ingredient.name}, {ingredient.quantity} {ingredient.unit}</li> }) }
+            <ul className='cook_user-products-list'>
+              { localUserProducts.map(ingredient => { return <li key={ingredient.id}>{ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1)}, {ingredient.quantity}{ingredient.unit}</li> }) }
             </ul>
           }
         </section>
-        <section className='possible-recipes-section'>
-          <h1>Possible recipes</h1>
-          <div className='possible-recipes'>
-            { (possibleRecipesCards.length > 0) ? possibleRecipesCards : <div>No recipe found</div>}
-          </div>
-        </section>
-        <section className='selected-recipes-section'>
-          <h1>Compose your menu</h1>
-          <div className='selected-recipes'>
+        <section id='cook_menu-section' className='cook_section'>
+          <h1 className='cook_heading'>Today&apos;s menu</h1>
+          <div id='cook_menu-recipes-container'>
           { selectedRecipesCards.length > 0 ? selectedRecipesCards : <div>Recipes you select will appear here</div> }
           </div>
         </section>
-        <section className='extra-product-recipes-section'>
-          <h1>With 2 more ingredient...</h1>
-          <div className='suggested-recipes'>
-          { extraProductsRecipesCards.length > 0 ? extraProductsRecipesCards : <>No recipe found</> }
+        <section id='cook_recipes-section' className='cook_section'>
+          <h1 className='cook_heading'>Possible recipes</h1>
+          <div className='cook_recipes-container'>
+            { (possibleRecipesCards.length > 0) ? possibleRecipesCards : <div>No recipe found</div>}
           </div>
         </section>
-        <section className='extra-quantity-recipes-section'>
-          <h1>With a bit more of your ingredients...</h1>
-          <div className='suggested-recipes'>
-          { extraQuantityRecipesCards.length > 0 ? extraQuantityRecipesCards : <>No recipe found</> }
+        <section id='cook_extra-q-recipes-section' className='cook_section'>
+          <h1 className='cook_heading'>With more quantities...</h1>
+          <div className='cook_recipes-container'>
+            { extraQuantityRecipesCards.length > 0 && extraQuantityRecipesCards }
           </div>
         </section>
+        <section id='cook_extra-p-recipes-section' className='cook_section'>
+          <h1 className='cook_heading'>With
+          <input type='number' min='1' max='3' className='threshold-input' value={threshold} onChange={(e) => setThreshold(parseInt(e.target.value) ?? 1)}/>
+          more ingredient{threshold > 1 ? 's' : ''}...</h1>
+          <div className='cook_recipes-container'>
+            { extraProductsRecipesCards.length > 0 && extraProductsRecipesCards }
+          </div>
+        </section>
+
       </section>
     </>
   )

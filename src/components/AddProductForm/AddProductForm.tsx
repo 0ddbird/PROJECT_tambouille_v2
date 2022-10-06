@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Ingredient } from '../../models/Ingredient'
 import { Product } from '../../models/Product'
-
+import './add-product-form.scss'
 interface IInputProps {
   userProducts: Product[]
   setUserProducts: (Product: Product[]) => void
@@ -80,7 +80,7 @@ const AddProductForm = ({ userProducts, setUserProducts, ingredients }: IInputPr
         }
         </div>
         <input type='number' id="product-quantity-input" min='1' value={productQuantity} onChange= {(event) => handleQuantityChange(event)}/>
-        <button type='submit' id="product-submit-button">Add product</button>
+        <button type='submit' id="product-submit-button">Add</button>
       </div>
     </form>
   )

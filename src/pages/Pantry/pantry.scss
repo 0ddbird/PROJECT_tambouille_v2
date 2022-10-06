@@ -1,42 +1,13 @@
-#add-products-form {
-  background-color: grey;
-  width: max-content;
-}
+@use '../../sass/abstract/' as a;
 
-.product-inputs-container {
-  position: relative;
-  display: flex;
+#pantry {
+  background-color: a.$clr-secondary;
 }
 
 
-
-.product-name-options-container {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  background-color: white;
-  border: 1px solid grey;
-}
-
-.product-name-option {
-  &:hover {
-    background-color: grey;
-    cursor: pointer;
-  }
-}
-
-#product-name-input {
-  position: relative;
-  grid-area: name;
-  
-}
-
-#product-quantity-input {
-  grid-area: quantity;
-  width: 10ch;
-}
-
-#product-submit-button {
-  grid-area: button;
+#pantry-products-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1ch 0;
+  padding: 0 2em;
 }

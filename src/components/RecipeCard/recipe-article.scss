@@ -1,5 +1,28 @@
-.recipe {
-  display: flex;
-  flex-direction: column;
-  background-color: grey;
+@use '../../sass/abstract/' as a;
+
+.possible-recipe {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  background-color: a.$clr-trswhite;
+  padding: .5em;
+}
+
+.possible-recipe-name {
+  font-size: 1em;
+}
+
+.possible-recipe-link {
+  @include a.flex-center;
+  
+}
+
+
+.possible-recipe-menu-button {
+  background-color: a.$clr-secondary;
+  @include a.flex-center;
+}
+
+.add-to-menu-icon {
+  height: 1em;
+  width: 1em;
 }

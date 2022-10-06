@@ -3,7 +3,8 @@ import { Recipe } from '../../models/Recipe'
 import { Product } from '../../models/Product'
 import { IProductsObject } from '../../models/interfaces'
 import rfdc from 'rfdc'
-
+import './recipe-extra-product.scss'
+import Cart from '../../assets/cart-arrow-down-solid.svg'
 interface IRecipeExtraProductProps {
   recipe: Recipe
   userProducts: Product[]
@@ -25,17 +26,20 @@ const RecipeExtraProduct = ({ recipe, userProducts, shoppingList, setShoppingLis
     setShoppingList(currentShoppingList)
   }
   return (
-    <article>
-      <h1>{recipe.name}</h1>
-      <h2>Ingredients</h2>
-      <ul>
-        {
-          recipe.products.map(product => {
-            return <li key={`${category} ${product.id}`}>{`${product.name} x${product.quantity}${product.unit}`}</li>
-          })
-        }
-      </ul>
-      <button type='button' onClick={() => addToShoppingList(recipe)}>Add missing ingredients to shopping list</button>
+    <article className='extra-recipe'>
+      <h1 className='extra-recipe-heading'>{recipe.name}</h1>
+      <section className='extra-ingredients-container'>
+        <ul className='extra-recipe-ingredients'>
+          {
+            recipe.products.map(product => {
+              return <li className='extra-recipe-ingredient' key={`${category} ${product.id}`}>{`${product.name} x${product.quantity}${product.unit}`}</li>
+            })
+          }
+        </ul>
+      </section>
+      <button type='button' className='extra-recipe-button' onClick={() => addToShoppingList(recipe)}>
+        <img className='cartIcon' src={Cart} alt='add-to-list' />
+      </button>
     </article>
   )
 }

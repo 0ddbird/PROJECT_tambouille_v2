@@ -17,16 +17,19 @@ const Pantry = ({ ingredients }: IPantryProps): JSX.Element => {
     key={product.id}
     product={product}
     userProducts={userProducts}
-    setUserProducts={setUserProducts}
-    selectedProducts={selectedProducts}/>
+    setUserProducts={setUserProducts}/>
   )
 
   return (
-  <section className='pantry'>
-    <h1>My pantry</h1>
+  <section id='pantry' className='page'>
+    <h1 className='section-heading'>My pantry</h1>
     <AddProductForm userProducts={userProducts} setUserProducts={setUserProducts} ingredients={ingredients}/>
-    <h2>My products</h2>
-    { (userProducts.length > 0) ? <div>{userProductCards}</div> : <div>You have no product yet.</div> }
+
+    <section id='pantry-products-container'>
+    <h2 className='section-subheading'>My products</h2>
+      { (userProducts.length > 0) ? <>{userProductCards}</> : <div>You have no product yet.</div> }
+    </section>
+
   </section>
   )
 }

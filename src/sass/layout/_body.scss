@@ -1,0 +1,31 @@
+@use '../abstract/' as a;
+
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  background: none;
+  border: none;
+
+  &:focus {
+    outline: 2px solid white;
+  }
+}
+
+.section-description {
+  margin: 1ch 2em;
+  color: white;
+}
+
+.page {
+  min-height: calc(100vh - 2em);
+}
+
+.icon {
+  height: 2em;
+  width: 2em;
+}

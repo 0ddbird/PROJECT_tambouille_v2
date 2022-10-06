@@ -3,6 +3,7 @@ import { Recipe } from '../../models/Recipe'
 import { Product } from '../../models/Product'
 import './recipe-article.scss'
 import { NavLink } from 'react-router-dom'
+import Ustensils from '../../assets/utensils-solid.svg'
 
 interface IRecipeCardProps {
   recipe: Recipe
@@ -37,12 +38,13 @@ const RecipeCard = ({ recipe, localUserProducts, setLocalUserProducts, selectedR
   }
 
   return (
-      <article className='recipe'>
-        <h1>{recipe.name}</h1>
-        <NavLink to={`/recipes/${recipe.id}`}>Directions</NavLink>
-        <button type='button'>Cook</button>
-        <button type='button' onClick={handleAddRecipe}>Add to menu</button>
-        </article>
+  <article className='possible-recipe'>
+    <h1 className='possible-recipe-name'>{recipe.name}</h1>
+    <NavLink className='possible-recipe-link' to={`/recipes/${recipe.id}`}>Details</NavLink>
+    <button className='possible-recipe-menu-button'type='button' onClick={handleAddRecipe}>
+      <img className='add-to-menu-icon' src={Ustensils} alt='add-to-menu'/>
+      </button>
+  </article>
   )
 }
 

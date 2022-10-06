@@ -1,0 +1,37 @@
+@use '../../sass/abstract/' as a;
+
+.selected-recipe {
+  background-color: a.$clr-trswhite;
+  padding: 1ch 1em;
+  border-radius: .25ch;
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+}
+
+.selected-recipe-heading {
+  display: flex;
+  font-size: 1em;
+  color: black;
+}
+
+.selected-recipe-quantity {
+  text-align: right;
+}
+
+.selected-recipe-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.selected-recipe-remove-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: a.$clr-red;
+  color: white;
+  font-weight: 700;
+  border-radius: .25ch;
+  height: 1.5em;
+  width: 1.5em;
+}

@@ -46,10 +46,10 @@ const ShoppingProduct = ({ product, shoppingList, setShoppingList, userProducts,
     setHasBeenPurchased(!hasBeenPurchased)
   }
   return (
-    <li>
-      <input type='checkbox' checked={hasBeenPurchased} onChange={(e) => handleShoppingProductState(e, product)} />
+    <li className='shopping-list-item'>
+      <input className='shopping-list-checkbox' type='checkbox' checked={hasBeenPurchased} onChange={(e) => handleShoppingProductState(e, product)} />
       <span className={hasBeenPurchased ? 'shopping-product-purchased' : 'shopping-product'}>{`${product.name} x${product.quantity}${product.unit}`}</span>
-      <button type='button' onClick={() => removeFromShoppingList(product)}>Remove</button>
+      <button className='shopping-product-remove-button' type='button' onClick={() => removeFromShoppingList(product)}>Remove</button>
     </li>
   )
 }
