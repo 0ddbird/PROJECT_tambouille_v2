@@ -5,7 +5,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  & h1 {
+    color: a.$clr-ternary;
+  }
 }
+
+
 
 .cta {
   margin: 1ch 1em;

@@ -38,8 +38,9 @@ const Cook = ({ recipes }: ICookProps): JSX.Element => {
 
   useEffect(() => {
     const currentlySelectedRecipes = [...selectedRecipes]
-    const selectedProductObject = currentlySelectedRecipes.flatMap((r: Recipe) => r.products).reduce((acc: IProductsObject, p: Product) => ({ ...acc, [p.id]: { ...p, quantity: p.quantity + (acc[p.id]?.quantity ?? 0) } }), {}) // eslint-disable-line
-
+    const selectedProductObject = currentlySelectedRecipes
+      .flatMap((r: Recipe) => r.products)
+      .reduce((acc: IProductsObject, p: Product) => ({ ...acc, [p.id]: { ...p, quantity: p.quantity + (acc[p.id]?.quantity ?? 0) } }), {}) // eslint-disable-line
     setSelectedProducts(selectedProductObject)
   }, [selectedRecipes])
 
