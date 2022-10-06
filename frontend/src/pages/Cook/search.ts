@@ -8,7 +8,7 @@ interface IResult {
 }
 
 export function filterRecipes (userProducts: IProduct[], recipes: Recipe[], threshold: number): IResult {
-  const userProductsIds = userProducts.map(ingredient => { return ingredient.id })
+  const userProductsIds = userProducts.map(ingredient => ingredient.id)
 
   const filteredResult: IResult = {
     matchingRecipes: [],
@@ -17,7 +17,7 @@ export function filterRecipes (userProducts: IProduct[], recipes: Recipe[], thre
   }
 
   recipes.forEach(recipe => {
-    // Filter the recipes products which are missing in the user products
+    // Filter the recipe products which are missing in the user products
     const extraProducts = recipe.products.filter(product => !userProductsIds.includes(product.id))
 
     // If there is more extra products than ${threshold}, we do not want to suggest this recipe.

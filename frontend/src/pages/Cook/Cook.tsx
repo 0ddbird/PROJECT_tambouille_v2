@@ -116,7 +116,7 @@ const Cook = ({ recipes }: ICookProps): JSX.Element => {
         </section>
         <section id='cook_extra-p-recipes-section' className='cook_section'>
           <h1 className='cook_heading'>With
-          <input type='number' min='1' max='3' className='threshold-input' value={threshold} onChange={(e) => setThreshold(parseInt(e.target.value) ?? 1)}/>
+          <input type='number' min='1' max='3' className='threshold-input' value={threshold} onChange={(e) => setThreshold(isNaN(parseInt(e.target.value)) ? 1 : parseInt(e.target.value))}/>
           more ingredient{threshold > 1 ? 's' : ''}...</h1>
           <div className='cook_recipes-container'>
             { extraProductsRecipesCards.length > 0 && extraProductsRecipesCards }
