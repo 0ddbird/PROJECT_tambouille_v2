@@ -1,4 +1,4 @@
-@use '../../sass/abstract' as a;
+@use '../../../sass/abstract/' as a;
 #add-products-form {
   & label {
     font-size: 0px;
@@ -20,14 +20,11 @@
   background-color: a.$clr-trswhite;
   color: black;
   position: relative;
-  border: none;
+  border: 1px solid a.$clr-dgrey;
   font-weight: 700;
-  border-radius: .5ch;
+  border-radius: .25rem;
   padding: .5ch 1ch;
   margin-right: 1ch;
-  &:focus {
-    outline: .25ch solid white;
-  }
 }
 
 #product-quantity-input {
@@ -36,22 +33,19 @@
   border: none;
   border-left: 1px solid a.$clr-trswhite;
   border-right: 1px solid a.$clr-trswhite;
-  border-radius: .5ch;
+  border-radius: .25rem;
   text-align: center;
   font-weight: 700;
   margin-right: 1ch;
-
-  &:focus {
-    outline: .25ch solid white;
-  }
-
+  border: 1px solid a.$clr-dgrey;
 }
 
 #product-submit-button {
   border: none;
   background: none;
-  background-color: a.$clr-ternary;
-  border-radius: .5ch;
+  background-color: a.$clr-secondary;
+  color: white;
+  border-radius: .25rem;
   font-weight: 700;
   padding: 1ch 1em;
 }

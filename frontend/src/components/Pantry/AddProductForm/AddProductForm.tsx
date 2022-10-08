@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Ingredient } from '../../models/Ingredient'
-import { Product } from '../../models/Product'
+import { Ingredient } from '../../../models/Ingredient'
+import { Product } from '../../../models/Product'
 import './add-product-form.scss'
 interface IInputProps {
   userProducts: Product[]

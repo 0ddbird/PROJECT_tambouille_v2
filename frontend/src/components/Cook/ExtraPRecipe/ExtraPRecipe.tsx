@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { Recipe } from '../../models/Recipe'
-import { Product } from '../../models/Product'
-import { IProductsObject } from '../../models/interfaces'
+import { Recipe } from '../../../models/Recipe'
+import { Product } from '../../../models/Product'
+import { IProductsObject } from '../../../models/interfaces'
 import rfdc from 'rfdc'
-import './recipe-extra-product.scss'
-import Cart from '../../assets/cart-arrow-down-solid.svg'
-interface IRecipeExtraProductProps {
+import './extraPRecipe.scss'
+import Cart from '../../../assets/cart-arrow-down-solid.svg'
+
+interface IExtraPRecipeProps {
   recipe: Recipe
   userProducts: Product[]
   shoppingList: IProductsObject
@@ -13,7 +14,7 @@ interface IRecipeExtraProductProps {
   category: string
 }
 
-const RecipeExtraProduct = ({ recipe, userProducts, shoppingList, setShoppingList, category }: IRecipeExtraProductProps): JSX.Element => {
+const ExtraPRecipe = ({ recipe, userProducts, shoppingList, setShoppingList, category }: IExtraPRecipeProps): JSX.Element => {
   function addToShoppingList (recipe: Recipe): void {
     const currentShoppingList = rfdc()(shoppingList)
     const userProductsIds = userProducts.map(product => product.id)
@@ -32,7 +33,7 @@ const RecipeExtraProduct = ({ recipe, userProducts, shoppingList, setShoppingLis
         <ul className='extra-recipe-ingredients'>
           {
             recipe.products.map(product => {
-              return <li className='extra-recipe-ingredient' key={`${category} ${product.id}`}>{`${product.name} x${product.quantity}${product.unit}`}</li>
+              return <li className='extra-recipe-ingredient' key={`${category} ${product.id}`}>{`${product.name.charAt(0).toUpperCase() + product.name.slice(1)} x${product.quantity}${product.unit}`}</li>
             })
           }
         </ul>
@@ -44,4 +45,4 @@ const RecipeExtraProduct = ({ recipe, userProducts, shoppingList, setShoppingLis
   )
 }
 
-export default RecipeExtraProduct
+export default ExtraPRecipe

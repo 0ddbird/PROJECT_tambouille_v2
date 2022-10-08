@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { Recipe } from '../../models/Recipe'
-import { Product } from '../../models/Product'
-import { IProductsObject } from '../../models/interfaces'
+import { Recipe } from '../../../models/Recipe'
+import { Product } from '../../../models/Product'
+import { IProductsObject } from '../../../models/interfaces'
 import rfdc from 'rfdc'
-import Cart from '../../assets/cart-arrow-down-solid.svg'
+import Cart from '../../../assets/cart-arrow-down-solid.svg'
 
-interface IRecipeExtraQuantityProps {
+interface IExtraQRecipeProps {
   recipe: Recipe
   userProducts: Product[]
   shoppingList: IProductsObject
@@ -13,7 +13,7 @@ interface IRecipeExtraQuantityProps {
   category: string
 }
 
-const RecipeExtraQuantity = ({ recipe, userProducts, shoppingList, setShoppingList, category }: IRecipeExtraQuantityProps): JSX.Element => {
+const ExtraQRecipe = ({ recipe, userProducts, shoppingList, setShoppingList, category }: IExtraQRecipeProps): JSX.Element => {
   function addQuantityToShoppingList (recipe: Recipe): void {
     const updatedShoppingList = rfdc()(shoppingList)
 
@@ -54,4 +54,4 @@ const RecipeExtraQuantity = ({ recipe, userProducts, shoppingList, setShoppingLi
   )
 }
 
-export default RecipeExtraQuantity
+export default ExtraQRecipe

@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../../components/ContextProvider/ContextProvider'
 import { Ingredient } from '../../models/Ingredient'
-import AddProductForm from '../../components/AddProductForm/AddProductForm'
-import UserProduct from '../../components/UserProduct/UserProduct'
+import AddProductForm from '../../components/Pantry/AddProductForm/AddProductForm'
+import UserProduct from '../../components/Pantry/UserProduct/UserProduct'
 import './pantry.scss'
 
 interface IPantryProps {
@@ -10,7 +10,7 @@ interface IPantryProps {
 }
 
 const Pantry = ({ ingredients }: IPantryProps): JSX.Element => {
-  const { userProducts, setUserProducts, selectedProducts } = useContext(AppContext)! // eslint-disable-line
+  const { userProducts, setUserProducts } = useContext(AppContext)! // eslint-disable-line
 
   const userProductCards = userProducts.map((product) =>
     <UserProduct

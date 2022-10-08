@@ -1,4 +1,4 @@
-@use '../../sass/abstract/' as a;
+@use '../../../sass/abstract/' as a;
 
 .selected-recipe {
   background-color: a.$clr-trswhite;
@@ -6,6 +6,7 @@
   border-radius: .25ch;
   display: grid;
   grid-template-columns: 4fr 1fr 1fr;
+  width: 100%;
 }
 
 .selected-recipe-heading {

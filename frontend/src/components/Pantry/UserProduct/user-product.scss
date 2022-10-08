@@ -1,10 +1,11 @@
-@use '../../sass/abstract/' as a;
+@use '../../../sass/abstract/' as a;
 .user-product {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 4fr;
   background-color: a.$clr-trswhite;
-  border-radius: .25ch;
+  border-radius: .25rem;
   padding: .5ch 1ch;
+  box-shadow: a.$box-shadow;
 }
 
 .user-product-name-container {
@@ -20,13 +21,16 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  border: 1px solid a.$clr-dgrey;
+  border-radius: .25rem;
+  margin-left: 1ch;
   
 }
 .user-product-quantity-input {
   width: 5ch;
   border: none;
   text-align: right;
-  border-radius: .25ch;
+  border-radius: .25rem;
   padding: 1ch .5ch 1ch 0;
 }
 
@@ -52,7 +56,7 @@
   background-color: a.$clr-red;
   color: white;
   font-weight: 700;
-  border-radius: .25ch;
+  border-radius: .25rem;
   width: 2em;
   height: 2em;
 }

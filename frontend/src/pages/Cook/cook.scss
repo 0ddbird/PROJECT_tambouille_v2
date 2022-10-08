@@ -1,26 +1,65 @@
 @use '../../sass/abstract/' as a;
 #cook {
-  background-color: a.$clr-dgrey;
+  background-color: a.$clr-lgrey;
 }
 
 .cook_heading {
   font-size: 2em;
+  text-align: center;
+
+  & input {
+    font-size: 1em;
+    font-weight: 700;
+    text-align: center;
+    background-color: a.$clr-trswhite;
+    margin: 0 1ch 0 1ch;
+    border: 1px solid a.$clr-dgrey;
+  }
 }
 
-.cook-section {
-  padding: 1em;
+.cook_section {
+  padding: 1em 1rem;
   margin-bottom: 3em;
 }
 
-#cook_products-section {
-  & h1 {
-    color: black;
-  }
+#cook_user-products-list {
+  background-color: a.$clr-trswhite;
+  padding: 1rem 1ch;
+  border-radius: .25rem;
+}
+
+
+#cook_menu-recipes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cook_menu-button {
+  margin-top: 1em;
+  background-color: a.$clr-secondary;
+  color: white;
+  font-weight: 700;
+  border-radius: .25ch;
+  padding: 1ch 1rem;
+}
+
+#cook_recipes-section {
+  border-top: 1px solid a.$clr-dgrey;
+}
+
+#cook_extra-q-recipes-section {
+  border-top: 1px solid a.$clr-dgrey;
+}
+
+#cook_extra-p-recipes-section {
+  border-top: 1px solid a.$clr-dgrey;
 }
 
 .cook_user-products-list {
   background-color: a.$clr-trswhite;
-  border-radius: .25ch;
+  border-radius: .25rem;
   padding: 1ch;
 
   & li {
@@ -30,24 +69,22 @@
   }
 }
 
-#cook_menu-section {
-  margin: 3em 0;
-  & h1 {
-    text-align: center;
-  }
-}
-
 .cook_recipes-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1ch;
   padding: 1em;
-}
 
-#cook_recipes-section {
+  @include a.mq-481 {
+    grid-template-columns: 1fr 1fr;
+  }
 
+  @include a.mq-961 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .threshold-input {
   width: 2ch;
 }
+

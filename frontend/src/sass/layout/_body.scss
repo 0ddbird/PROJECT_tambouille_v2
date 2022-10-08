@@ -12,13 +12,12 @@ input {
   border: none;
 
   &:focus {
-    outline: 2px solid white;
+    outline: .25ch solid a.$clr-secondary;
   }
 }
 
 .section-description {
   margin: 1ch 2em;
-  color: white;
 }
 
 .page {

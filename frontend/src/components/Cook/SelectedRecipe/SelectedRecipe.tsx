@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { Product } from '../../models/Product'
-import { Recipe } from '../../models/Recipe'
+import { Product } from '../../../models/Product'
+import { Recipe } from '../../../models/Recipe'
 import './selected-recipe.scss'
 
 interface ISelectedRecipeProps {

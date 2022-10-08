@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Product } from '../../models/Product'
+import { Product } from '../../../models/Product'
 import './user-product.scss'
 
 interface IUserProductProps {

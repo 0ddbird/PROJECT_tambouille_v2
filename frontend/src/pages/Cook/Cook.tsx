@@ -4,11 +4,12 @@ import { Recipe } from '../../models/Recipe'
 import { Product } from '../../models/Product'
 import { IProductsObject } from '../../models/interfaces'
 import { filterRecipes } from './search'
-import RecipeCard from '../../components/RecipeCard/RecipeCard'
-import SelectedRecipe from '../../components/SelectedRecipe/SelectedRecipe'
-import RecipeExtraProduct from '../../components/RecipeExtraProduct/RecipeExtraProduct'
-import RecipeExtraQuantity from '../../components/RecipeExtraQuantity/RecipeExtraQuantity'
+import PossibleRecipe from '../../components/Cook/PossibleRecipe/PossibleRecipe'
+import SelectedRecipe from '../../components/Cook/SelectedRecipe/SelectedRecipe'
+import RecipeExtraProduct from '../../components/Cook/ExtraPRecipe/ExtraPRecipe'
+import RecipeExtraQuantity from '../../components/Cook/ExtraQRecipe/ExtraQRecipe'
 import './cook.scss'
+import rfdc from 'rfdc'
 
 interface ICookProps {
   recipes: Recipe[]
@@ -17,6 +18,7 @@ interface ICookProps {
 const Cook = ({ recipes }: ICookProps): JSX.Element => {
   const {
     userProducts,
+    setUserProducts,
     selectedRecipes,
     setSelectedRecipes,
     setSelectedProducts,
@@ -44,8 +46,24 @@ const Cook = ({ recipes }: ICookProps): JSX.Element => {
     setSelectedProducts(selectedProductObject)
   }, [selectedRecipes])
 
+  function handleCookSelected (): void {
+    const updatedSelectedRecipes = rfdc()(selectedRecipes)
+    const updatedUserProducts = rfdc()(userProducts)
+    const selectedRecipesProducts = updatedSelectedRecipes
+      .flatMap((r: Recipe) => r.products)
+      .reduce((acc: IProductsObject, p: Product) => ({ ...acc, [p.id]: { ...p, quantity: p.quantity + (acc[p.id]?.quantity ?? 0) } }), {}) // eslint-disable-line
+    console.log(selectedRecipesProducts)
+    updatedUserProducts.forEach((product) => {
+      if (!(product.id in selectedRecipesProducts)) return
+      product.quantity -= selectedRecipesProducts[product.id].quantity
+    })
+    const newUserProducts = updatedUserProducts.filter(product => product.quantity > 0)
+    setUserProducts(newUserProducts)
+    setSelectedRecipes([])
+  }
+
   const possibleRecipesCards = possibleRecipes.map(recipe =>
-    <RecipeCard
+    <PossibleRecipe
     key={recipe.id}
     recipe={recipe}
     localUserProducts={localUserProducts}
@@ -91,15 +109,16 @@ const Cook = ({ recipes }: ICookProps): JSX.Element => {
         <section id='cook_products-section' className='cook_section'>
           <h1 className='cook_heading'>My ingredients</h1>
           { localUserProducts.length > 0 &&
-            <ul className='cook_user-products-list'>
-              { localUserProducts.map(ingredient => { return <li key={ingredient.id}>{ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1)}, {ingredient.quantity}{ingredient.unit}</li> }) }
-            </ul>
+            <div id='cook_user-products-list'>
+              { localUserProducts.map(ingredient => { return <div key={ingredient.id}>{ingredient.name.charAt(0).toUpperCase() + ingredient.name.slice(1)}, {ingredient.quantity}{ingredient.unit}</div> }) }
+            </div>
           }
         </section>
         <section id='cook_menu-section' className='cook_section'>
           <h1 className='cook_heading'>Today&apos;s menu</h1>
           <div id='cook_menu-recipes-container'>
-          { selectedRecipesCards.length > 0 ? selectedRecipesCards : <div>Recipes you select will appear here</div> }
+            { selectedRecipesCards.length > 0 ? selectedRecipesCards : <div>Recipes you select will appear here</div> }
+            { selectedRecipesCards.length > 0 && <button className='cook_menu-button' onClick={handleCookSelected}>Cook!</button> }
           </div>
         </section>
         <section id='cook_recipes-section' className='cook_section'>

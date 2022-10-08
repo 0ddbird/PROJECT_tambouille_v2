@@ -4,22 +4,36 @@
   list-style: none;
   display: grid;
   grid-template-columns: 3em 10fr 1fr;
-}
-
-.shopping-list-checkbox {
-  
-}
-
-.shopping-product {
-
+  padding: .5rem;
+  border-radius: .25rem;
+  box-shadow: a.$box-shadow;
+  margin: 0 0 .5rem 0;
 }
 
 .shopping-product-purchased {
   text-decoration:line-through;
 }
 
+.shopping-product-remove-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .shopping-product-remove-button {
   background-color: a.$clr-red;
   color: white;
-  border-radius: .25ch;
+  border-radius: .25rem;
+  @include a.flex-center;
+  padding: .25rem;
+}
+.shopping-product-remove-icon {
+  height: 1em;
+  width: 1em;
+}
+
+.shopping-list-checkbox {
+  &:focus {
+    outline: none;
+  }
 }

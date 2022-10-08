@@ -2,7 +2,7 @@
 
 header {
   @include a.flex-center;
-  background-color: a.$clr-primary;
+  background-color: a.$clr-secondary;
 }
 
 nav {
@@ -15,4 +15,5 @@ nav {
 .navlink {
   margin: 0 1ch 0 1ch;
   font-weight: 700;
+  color: white;
 }

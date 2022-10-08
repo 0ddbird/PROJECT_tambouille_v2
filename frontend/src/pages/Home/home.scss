@@ -1,23 +1,22 @@
 @use '../../sass/abstract/' as a;
 
 #home {
-  background-color: a.$clr-primary;
+  background-color: a.$clr-lgrey;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   & h1 {
-    color: a.$clr-ternary;
+    color: a.$clr-secondary;
   }
 }
 
-
-
 .cta {
   margin: 1ch 1em;
-  background-color: a.$clr-ternary;
-  border-radius: 5px;
+  background-color: a.$clr-secondary;
+  border-radius: .25rem;
   padding: 1ch 1em;
   font-weight: 700;
+  color: white;
 }
 

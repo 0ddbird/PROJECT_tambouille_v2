@@ -3,6 +3,7 @@ import { IProductsObject } from '../../models/interfaces'
 import { Product } from '../../models/Product'
 import rfdc from 'rfdc'
 import './shopping-product.scss'
+import Trash from '../../assets/trash-solid.svg'
 
 interface IShoppingProductProps {
   product: Product
@@ -48,8 +49,12 @@ const ShoppingProduct = ({ product, shoppingList, setShoppingList, userProducts,
   return (
     <li className='shopping-list-item'>
       <input className='shopping-list-checkbox' type='checkbox' checked={hasBeenPurchased} onChange={(e) => handleShoppingProductState(e, product)} />
-      <span className={hasBeenPurchased ? 'shopping-product-purchased' : 'shopping-product'}>{`${product.name} x${product.quantity}${product.unit}`}</span>
-      <button className='shopping-product-remove-button' type='button' onClick={() => removeFromShoppingList(product)}>Remove</button>
+      <span className={hasBeenPurchased ? 'shopping-product-purchased' : 'shopping-product'}>{`${product.name.charAt(0).toUpperCase() + product.name.slice(1)} x${product.quantity}${product.unit}`}</span>
+      <div className='shopping-product-remove-container'>
+        <button className='shopping-product-remove-button' type='button' onClick={() => removeFromShoppingList(product)}>
+          <img className='shopping-product-remove-icon' src={Trash} alt='remove'/>
+        </button>
+      </div>
     </li>
   )
 }

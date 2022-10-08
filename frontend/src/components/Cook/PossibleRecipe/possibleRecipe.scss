@@ -1,25 +1,26 @@
-@use '../../sass/abstract/' as a;
+@use '../../../sass/abstract/' as a;
 
 .possible-recipe {
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-columns: 2fr 1fr 1fr;
   background-color: a.$clr-trswhite;
   padding: .5em;
+  border-radius: .25rem;
+  box-shadow: a.$box-shadow;
 }
 
-.possible-recipe-name {
+.possible-recipe-heading {
   font-size: 1em;
 }
 
 .possible-recipe-link {
   @include a.flex-center;
-  
 }
-
 
 .possible-recipe-menu-button {
   background-color: a.$clr-secondary;
   @include a.flex-center;
+  border-radius: .25rem;
 }
 
 .add-to-menu-icon {
