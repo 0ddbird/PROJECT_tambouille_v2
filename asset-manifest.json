@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/tambouille_v2/static/css/main.59d2c4ba.css",
-    "main.js": "/tambouille_v2/static/js/main.453affbe.js",
+    "main.css": "/tambouille_v2/static/css/main.dfff4907.css",
+    "main.js": "/tambouille_v2/static/js/main.2c7b1b96.js",
     "index.html": "/tambouille_v2/index.html",
     "static/media/utensils-solid.svg": "/tambouille_v2/static/media/utensils-solid.40a790f50d98b912fbdccb3c3ab90ed8.svg",
     "static/media/cart-arrow-down-solid.svg": "/tambouille_v2/static/media/cart-arrow-down-solid.5745aabf17071b6c69235de088a04637.svg",
     "static/media/trash-solid.svg": "/tambouille_v2/static/media/trash-solid.8066dfce1917ca3b4017777db3b8d9a1.svg",
-    "main.59d2c4ba.css.map": "/tambouille_v2/static/css/main.59d2c4ba.css.map",
-    "main.453affbe.js.map": "/tambouille_v2/static/js/main.453affbe.js.map"
+    "main.dfff4907.css.map": "/tambouille_v2/static/css/main.dfff4907.css.map",
+    "main.2c7b1b96.js.map": "/tambouille_v2/static/js/main.2c7b1b96.js.map"
   },
   "entrypoints": [
-    "static/css/main.59d2c4ba.css",
-    "static/js/main.453affbe.js"
+    "static/css/main.dfff4907.css",
+    "static/js/main.2c7b1b96.js"
   ]
 }
