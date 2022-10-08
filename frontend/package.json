@@ -1,6 +1,7 @@
 {
   "name": "tambouille",
   "version": "0.1.0",
+  "homepage": "https://0ddbird.github.io/tambouille_v2",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -22,7 +23,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "tsc": "tsc -w --noEmit false"
+    "tsc": "tsc -w --noEmit false",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +53,7 @@
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-react": "^7.31.8",
+    "gh-pages": "^4.0.0",
     "sass": "^1.55.0",
     "sass-loader": "^13.0.2",
     "ts-loader": "^9.4.1",

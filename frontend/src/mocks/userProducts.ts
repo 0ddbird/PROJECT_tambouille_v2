@@ -16,6 +16,38 @@ const productThree = {
   quantity: 900
 }
 
-const userProducts: Product[] = [productOne, productTwo, productThree]
+const productFour = {
+  ...{ ...ingredients[16] },
+  quantity: 1
+}
+
+const productFive = {
+  ...{ ...ingredients[10] },
+  quantity: 1
+}
+
+const productSix = {
+  ...{ ...ingredients[4] },
+  quantity: 1200
+}
+
+const productSeven = {
+  ...{ ...ingredients[11] },
+  quantity: 500
+}
+
+const productEight = {
+  ...{ ...ingredients[8] },
+  quantity: 250
+
+}
+
+const productNine = {
+  ...{ ...ingredients[5] },
+  quantity: 4
+
+}
+
+const userProducts: Product[] = [productOne, productTwo, productThree, productFour, productFive, productSix, productSeven, productEight, productNine]
 
 export { userProducts }
